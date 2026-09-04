@@ -20,14 +20,14 @@ export default function Team() {
         {TEAM.map((member, i) => (
           <motion.div
             key={member.name}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: i * 0.15 }}
+            initial={{ opacity: 0, y: 25, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: false, amount: 0.15 }}
+            transition={{ duration: 0.5, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
             className="h-full"
           >
-            <Tilt3D maxTilt={7} scale={1.015} className="h-full">
-              <div className="card-surface h-full p-8 sm:p-10 flex flex-col justify-between border border-white/10 hover:border-accent-cyan/50 hover:shadow-glow-card relative overflow-hidden bg-bg-850/90">
+            <Tilt3D maxTilt={6} scale={1.025} className="h-full">
+              <div className="card-surface group h-full p-8 sm:p-10 flex flex-col justify-between border border-white/10 hover:border-cyan-500/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(6,182,212,0.2)] relative overflow-hidden bg-slate-900/90 transition-all duration-300">
                 {/* Background grid pattern */}
                 <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-15 pointer-events-none" />
 
@@ -35,8 +35,8 @@ export default function Team() {
                   {/* Top Badge */}
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center gap-2">
-                      <Sparkle className="h-4 w-4 text-accent-cyan" />
-                      <span className="eyebrow">{`0${i + 1} / LEAD ENGINEER`}</span>
+                      <Sparkle className="h-4 w-4 text-cyan-400" />
+                      <span className="eyebrow text-cyan-400">{`0${i + 1} / LEAD ENGINEER`}</span>
                     </div>
                     <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
                   </div>
@@ -44,21 +44,29 @@ export default function Team() {
                   {/* Profile Header */}
                   <div className="flex flex-col sm:flex-row sm:items-center gap-6">
                     <div
-                      className={`relative h-24 w-24 rounded-2xl p-[2px] bg-gradient-to-br ${member.ring} shadow-xl shrink-0`}
+                      className="relative h-24 w-24 rounded-2xl p-[2px] bg-gradient-to-br from-indigo-500 via-purple-600 to-cyan-400 shadow-xl shrink-0 group-hover:scale-105 transition-transform duration-300"
                     >
-                      <div className="h-full w-full rounded-2xl bg-bg-950 flex items-center justify-center">
-                        <span className="font-display text-3xl font-extrabold text-white bg-gradient-to-br from-white to-slate-400 bg-clip-text text-transparent">
-                          {member.initials}
-                        </span>
+                      <div className="h-full w-full rounded-2xl bg-[#06030F] flex items-center justify-center overflow-hidden">
+                        {member.avatar ? (
+                          <img
+                            src={member.avatar}
+                            alt={member.name}
+                            className="h-full w-full object-cover object-center rounded-2xl"
+                          />
+                        ) : (
+                          <span className="font-display text-3xl font-extrabold text-white bg-gradient-to-br from-white to-slate-300 bg-clip-text text-transparent">
+                            {member.initials}
+                          </span>
+                        )}
                       </div>
-                      <span className="absolute -bottom-1 -right-1 h-4 w-4 rounded-full bg-emerald-400 border-2 border-bg-950" />
+                      <span className="absolute -bottom-1 -right-1 h-4 w-4 rounded-full bg-emerald-400 border-2 border-[#06030F]" />
                     </div>
 
                     <div>
-                      <h3 className="text-2xl font-display font-bold text-white">
+                      <h3 className="text-2xl font-display font-bold text-white group-hover:text-cyan-300 transition-colors">
                         {member.name}
                       </h3>
-                      <p className="mt-1 text-xs sm:text-sm font-mono text-accent-cyan font-semibold">
+                      <p className="mt-1 text-xs sm:text-sm font-mono text-cyan-400 font-semibold">
                         {member.role}
                       </p>
                     </div>
@@ -74,7 +82,7 @@ export default function Team() {
                     {member.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-mono text-slate-300"
+                        className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-mono text-slate-300 hover:border-cyan-500/40 hover:scale-105 hover:bg-white/[0.06] transition-all duration-200 cursor-default"
                       >
                         {tag}
                       </span>
@@ -88,11 +96,11 @@ export default function Team() {
                     href={member.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-secondary text-xs sm:text-sm py-3 px-6 w-full justify-center group"
+                    className="btn-secondary text-xs sm:text-sm py-3 px-6 w-full justify-center group/btn hover:scale-105 active:scale-95 transition-all duration-300"
                   >
-                    <Github className="h-4 w-4 text-accent-cyan" />
+                    <Github className="h-4 w-4 text-cyan-400" />
                     <span>Lihat Portofolio Personal</span>
-                    <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                    <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
                   </a>
                 </div>
               </div>

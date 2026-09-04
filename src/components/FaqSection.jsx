@@ -38,7 +38,13 @@ export default function FaqSection() {
         desc="Transparansi total mengenai proses, garansi, kepemilikan source code, dan skema pengerjaan proyek di NexaCode Studio."
       />
 
-      <div className="mt-12 max-w-4xl">
+      <motion.div
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.15 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className="mt-12 max-w-4xl"
+      >
         {/* Search Bar & Category Filter */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8">
           {/* Categories */}
@@ -47,10 +53,10 @@ export default function FaqSection() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-1.5 rounded-xl text-xs font-medium transition-all ${
+                className={`px-4 py-2 rounded-xl text-xs font-medium transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer ${
                   activeCategory === cat
-                    ? "bg-accent-indigo text-white shadow-glow-indigo font-semibold"
-                    : "bg-white/[0.03] text-slate-400 hover:text-white border border-white/5"
+                    ? "bg-gradient-to-r from-indigo-600 to-cyan-500 text-white shadow-[0_0_20px_rgba(6,182,212,0.35)] font-semibold"
+                    : "bg-white/[0.03] text-slate-400 hover:text-white hover:bg-white/[0.06] border border-white/5"
                 }`}
               >
                 {cat}
@@ -66,12 +72,12 @@ export default function FaqSection() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Cari pertanyaan..."
-              className="w-full pl-9 pr-8 py-2 rounded-xl bg-white/[0.04] border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-accent-cyan transition-colors"
+              className="w-full pl-9 pr-8 py-2.5 rounded-xl bg-slate-900/60 border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/30 transition-all duration-200"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-0.5"
               >
                 <X className="h-3.5 w-3.5" />
               </button>
@@ -91,7 +97,7 @@ export default function FaqSection() {
                   setSearchQuery("");
                   setActiveCategory("Semua");
                 }}
-                className="mt-3 text-xs text-accent-cyan underline"
+                className="mt-3 text-xs text-cyan-400 hover:underline cursor-pointer"
               >
                 Reset Pencarian
               </button>
@@ -105,23 +111,23 @@ export default function FaqSection() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: i * 0.05 }}
-                  className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                  className={`rounded-2xl border transition-all duration-300 overflow-hidden hover:scale-[1.01] ${
                     isOpen
-                      ? "border-accent-indigo/50 bg-bg-850 shadow-lg"
-                      : "border-white/10 bg-bg-900/60 hover:border-white/20"
+                      ? "border-cyan-500/50 bg-slate-900 shadow-xl"
+                      : "border-white/10 bg-slate-900/60 hover:border-cyan-500/30 hover:bg-slate-900/80"
                   }`}
                 >
                   <button
                     onClick={() => setOpenIndex(isOpen ? -1 : i)}
                     aria-expanded={isOpen}
-                    className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left transition-colors"
+                    className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left transition-colors cursor-pointer"
                   >
                     <span className="flex items-center gap-3.5">
                       <span
                         className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors ${
                           isOpen
-                            ? "bg-accent-indigo text-white"
-                            : "bg-white/[0.04] text-accent-cyan"
+                            ? "bg-gradient-to-br from-indigo-500 to-cyan-500 text-white shadow-md"
+                            : "bg-white/[0.04] text-cyan-400"
                         }`}
                       >
                         <MessageCircleQuestion className="h-4 w-4" />
@@ -149,7 +155,7 @@ export default function FaqSection() {
                       >
                         <div className="px-6 pb-6 pl-16 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
                           <p>{item.a}</p>
-                          <span className="inline-block mt-3 text-[11px] font-mono text-accent-cyan bg-accent-cyan/10 px-2 py-0.5 rounded">
+                          <span className="inline-block mt-3 text-[11px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">
                             Kategori: {item.category}
                           </span>
                         </div>
@@ -163,7 +169,7 @@ export default function FaqSection() {
         </div>
 
         {/* Still have questions banner */}
-        <div className="mt-10 p-6 rounded-2xl border border-accent-cyan/20 bg-gradient-to-r from-accent-indigo/10 via-accent-blue/10 to-accent-cyan/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-10 p-6 sm:p-7 rounded-2xl border border-cyan-500/30 bg-gradient-to-r from-indigo-950/40 via-slate-900/90 to-cyan-950/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
           <div>
             <h4 className="font-display font-bold text-white text-base">
               Masih memiliki pertanyaan spesifik seputar proyek Anda?
@@ -176,13 +182,13 @@ export default function FaqSection() {
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary text-xs sm:text-sm py-3 px-6 shrink-0 whitespace-nowrap"
+            className="btn-primary text-xs sm:text-sm py-3 px-6 shrink-0 whitespace-nowrap hover:scale-105 active:scale-95 transition-all duration-300"
           >
             <MessageCircle className="h-4 w-4" />
-            Tanya via WhatsApp
+            <span>Tanya via WhatsApp</span>
           </a>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

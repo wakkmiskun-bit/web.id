@@ -12,11 +12,20 @@ import FaqSection from "./components/FaqSection";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import CTAFooter from "./components/CTAFooter";
 import Background3D from "./components/Background3D";
+import CursorGlow from "./components/CursorGlow";
+import ScrollProgressBar from "./components/ScrollProgressBar";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
   return (
     <div className="min-h-screen bg-bg-950 text-slate-100 selection:bg-accent-indigo/40 selection:text-white relative overflow-x-hidden">
-      {/* Dynamic 3D Particle Constellation Background Canvas */}
+      {/* Top Scroll Progress Indicator */}
+      <ScrollProgressBar />
+
+      {/* Interactive Cursor Spotlight Aura */}
+      <CursorGlow />
+
+      {/* Dynamic 3D Particle Constellation Background Canvas with Scroll Parallax */}
       <Background3D />
 
       {/* Navigation Header */}
@@ -39,6 +48,8 @@ export default function App() {
       {/* Footer & Floating Triggers */}
       <CTAFooter />
       <FloatingWhatsApp />
+      <ScrollToTop />
     </div>
   );
 }
+

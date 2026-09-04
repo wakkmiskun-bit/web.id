@@ -8,31 +8,32 @@
     color-scheme: dark;
   }
   body {
-    @apply font-body bg-bg-950 text-slate-100 antialiased selection:bg-accent-indigo/40 selection:text-white overflow-x-hidden;
+    @apply font-body text-slate-100 antialiased selection:bg-accent-violet/40 selection:text-white overflow-x-hidden;
+    background-color: #06030F;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-display tracking-tight;
   }
   
-  /* Sleek modern dark scrollbar */
+  /* Elegant dark scrollbar with violet tint */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 7px;
   }
   ::-webkit-scrollbar-track {
-    background: #020617;
+    background: #06030F;
   }
   ::-webkit-scrollbar-thumb {
-    background: #1e293b;
+    background: #2E1D45;
     border-radius: 9999px;
-    border: 2px solid #020617;
+    border: 2px solid #06030F;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #3b82f6;
+    background: #7C3AED;
   }
 
   a:focus-visible,
   button:focus-visible {
-    outline: 2px solid #38bdf8;
+    outline: 2px solid #10B981;
     outline-offset: 3px;
     border-radius: 8px;
   }
@@ -40,39 +41,63 @@
 
 @layer components {
   .glass {
-    @apply bg-bg-900/70 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.37)];
+    @apply backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)];
+    background: rgba(13, 8, 24, 0.75);
   }
 
   .glass-card {
-    @apply bg-gradient-to-b from-white/[0.08] to-white/[0.02] backdrop-blur-xl border border-white/10 shadow-2xl;
+    @apply backdrop-blur-xl border border-white/10 shadow-2xl;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
   }
 
   .eyebrow {
-    @apply font-mono text-xs tracking-widest text-accent-cyan uppercase inline-flex items-center gap-1.5 font-medium;
+    @apply font-mono text-xs tracking-widest uppercase inline-flex items-center gap-1.5 font-medium;
+    color: #10B981;
   }
 
   .section-pad {
     @apply px-6 md:px-10 lg:px-20 py-24 md:py-32;
   }
 
+  /* Primary button: Indigo → Violet → Cyan with zoom animation */
   .btn-primary {
     @apply relative inline-flex items-center justify-center gap-2 rounded-xl px-7 py-3.5
-      font-semibold text-white bg-gradient-to-r from-accent-indigo via-accent-blue to-accent-cyan
-      transition-all duration-300 ease-out shadow-[0_0_25px_-5px_rgba(99,102,241,0.5)]
-      hover:shadow-[0_0_40px_2px_rgba(34,211,238,0.5)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98];
+      font-semibold text-white
+      transition-all duration-300 ease-out
+      hover:scale-[1.04] active:scale-[0.97]
+      hover:-translate-y-0.5 active:translate-y-0 cursor-pointer;
+    background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #06B6D4 100%);
+    box-shadow: 0 4px 20px -2px rgba(99, 102, 241, 0.5), 0 0 35px -5px rgba(6, 182, 212, 0.35);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 8px 30px -2px rgba(99, 102, 241, 0.65), 0 0 45px -2px rgba(6, 182, 212, 0.5);
+    filter: brightness(1.08);
   }
 
+  /* Secondary button with glass and zoom animation */
   .btn-secondary {
     @apply inline-flex items-center justify-center gap-2 rounded-xl px-7 py-3.5
-      font-semibold text-slate-100 border border-white/15 bg-white/[0.04]
+      font-semibold text-slate-100 border border-white/10
       backdrop-blur-md transition-all duration-300 ease-out
-      hover:bg-white/[0.09] hover:border-accent-cyan/40 hover:text-white hover:-translate-y-0.5
-      active:translate-y-0 active:scale-[0.98] shadow-sm;
+      hover:scale-[1.03] active:scale-[0.97]
+      hover:text-white hover:-translate-y-0.5
+      active:translate-y-0 shadow-sm cursor-pointer;
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(6, 182, 212, 0.4);
+    box-shadow: 0 4px 20px -4px rgba(6, 182, 212, 0.25);
   }
 
   .card-surface {
-    @apply rounded-2xl border border-white/10 bg-gradient-to-b from-bg-850/90 to-bg-900/90
-      backdrop-blur-md transition-all duration-300;
+    @apply rounded-2xl border border-white/[0.08]
+      backdrop-blur-xl transition-all duration-300;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.75) 0%, rgba(7, 11, 22, 0.85) 100%);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+  .card-surface:hover {
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 30px -10px rgba(99, 102, 241, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   }
 
   .glow-border {
@@ -84,7 +109,7 @@
     inset: -1px;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(99,102,241,0.5), rgba(34,211,238,0.2), rgba(255,255,255,0.05));
+    background: linear-gradient(135deg, rgba(99,102,241,0.5), rgba(6,182,212,0.3), rgba(255,255,255,0.08));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -92,7 +117,22 @@
   }
 
   .text-glow {
-    text-shadow: 0 0 30px rgba(99, 102, 241, 0.4);
+    text-shadow: 0 0 35px rgba(99, 102, 241, 0.45);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #6366f1;
   }
 }
 

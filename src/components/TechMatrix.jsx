@@ -35,7 +35,13 @@ export default function TechMatrix() {
         desc="Kami hanya mengadopsi stack teknologi yang telah teruji stabilitasnya di skala enterprise untuk menjamin kecepatan, skalabilitas, dan proteksi jangka panjang."
       />
 
-      <div className="mt-12 grid lg:grid-cols-12 gap-8 items-start perspective-1500">
+      <motion.div
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.15 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className="mt-12 grid lg:grid-cols-12 gap-8 items-start perspective-1500"
+      >
         {/* Left: Category Selector Tabs (4 cols) */}
         <div className="lg:col-span-4 space-y-3">
           {TECH_CATEGORIES.map((cat, idx) => {
@@ -46,16 +52,16 @@ export default function TechMatrix() {
               <button
                 key={cat.category}
                 onClick={() => setActiveCategoryIndex(idx)}
-                className={`w-full p-4 sm:p-5 rounded-2xl border text-left transition-all duration-300 flex items-center gap-4 ${
+                className={`w-full p-4 sm:p-5 rounded-2xl border text-left transition-all duration-300 flex items-center gap-4 hover:scale-[1.02] active:scale-[0.98] cursor-pointer ${
                   isActive
-                    ? "border-accent-cyan/60 bg-accent-indigo/20 shadow-glow-cyan"
-                    : "border-white/10 bg-bg-850/60 hover:bg-white/[0.04] text-slate-300"
+                    ? "border-cyan-500/70 bg-gradient-to-r from-indigo-950/60 to-slate-900 shadow-[0_0_25px_rgba(6,182,212,0.2)]"
+                    : "border-white/10 bg-slate-900/60 hover:bg-white/[0.04] hover:border-white/20 text-slate-300"
                 }`}
               >
                 <div
-                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-colors ${
+                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${
                     isActive
-                      ? "bg-accent-indigo text-white shadow-md"
+                      ? "bg-gradient-to-br from-indigo-600 to-cyan-500 text-white shadow-md scale-105"
                       : "bg-white/[0.04] text-slate-400"
                   }`}
                 >
@@ -80,8 +86,8 @@ export default function TechMatrix() {
 
         {/* Right: Interactive 3D Stack Showcase (8 cols) */}
         <div className="lg:col-span-8">
-          <Tilt3D maxTilt={5} scale={1.01}>
-            <div className="card-surface p-7 sm:p-9 border-white/15 bg-bg-850/90 shadow-2xl relative overflow-hidden min-h-[380px]">
+          <Tilt3D maxTilt={5} scale={1.015}>
+            <div className="card-surface p-7 sm:p-9 border-white/15 bg-slate-900/90 shadow-2xl relative overflow-hidden min-h-[380px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeCategoryIndex}
@@ -92,7 +98,7 @@ export default function TechMatrix() {
                 >
                   <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
                     <div>
-                      <span className="eyebrow text-accent-cyan">
+                      <span className="eyebrow text-cyan-400">
                         Layer: {TECH_CATEGORIES[activeCategoryIndex].category}
                       </span>
                       <h3 className="text-2xl font-display font-bold text-white mt-1">
@@ -109,13 +115,13 @@ export default function TechMatrix() {
                     {TECH_CATEGORIES[activeCategoryIndex].items.map((item) => (
                       <div
                         key={item.name}
-                        className="rounded-xl border border-white/10 bg-white/[0.02] p-4 hover:border-accent-cyan/40 hover:bg-white/[0.04] transition-all"
+                        className="rounded-xl border border-white/10 bg-white/[0.02] p-4 hover:border-cyan-500/40 hover:bg-white/[0.05] hover:scale-[1.02] transition-all duration-200 cursor-default"
                       >
                         <div className="flex items-center justify-between gap-2">
                           <h4 className="font-display font-bold text-white text-base">
                             {item.name}
                           </h4>
-                          <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-accent-indigo/30 text-accent-cyan border border-accent-indigo/40">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-indigo-500/20 text-cyan-300 border border-indigo-500/30">
                             {item.badge}
                           </span>
                         </div>
@@ -132,7 +138,7 @@ export default function TechMatrix() {
                       <Zap className="h-4 w-4" />
                       <span>Optimasi Load Score 99/100 Core Web Vitals</span>
                     </div>
-                    <div className="flex items-center gap-2 text-accent-cyan">
+                    <div className="flex items-center gap-2 text-cyan-400">
                       <ShieldCheck className="h-4 w-4" />
                       <span>Hardened Database &amp; Automated Backups</span>
                     </div>
@@ -142,7 +148,7 @@ export default function TechMatrix() {
             </div>
           </Tilt3D>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

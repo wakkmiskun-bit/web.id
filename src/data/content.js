@@ -351,6 +351,7 @@ export const TEAM = [
     url: "https://wakkmiskun-bit.github.io/ft/",
     ring: "from-accent-indigo via-accent-blue to-accent-cyan",
     initials: "WK",
+    avatar: null, // Masukkan path foto developer di sini, contoh: "/team/wakkmiskun.jpg"
     tags: ["Laravel Architecture", "MySQL Tuning", "API Security", "Server Hardening"],
   },
   {
@@ -360,6 +361,7 @@ export const TEAM = [
     url: "https://rikorizky.my.id/",
     ring: "from-accent-cyan via-accent-blue to-accent-indigo",
     initials: "RR",
+    avatar: null, // Masukkan path foto developer di sini, contoh: "/team/rikorizky.jpg"
     tags: ["React.js", "Tailwind CSS", "3D Motion UX", "Conversion Design"],
   },
 ];

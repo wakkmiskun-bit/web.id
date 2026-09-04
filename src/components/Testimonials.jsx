@@ -20,16 +20,16 @@ export default function Testimonials() {
         {TESTIMONIALS.map((item, i) => (
           <motion.div
             key={item.author}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: i * 0.12 }}
+            initial={{ opacity: 0, y: 25, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: false, amount: 0.15 }}
+            transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="h-full"
           >
-            <Tilt3D maxTilt={8} scale={1.02} className="h-full">
-              <div className="card-surface h-full p-8 flex flex-col justify-between border border-white/10 hover:border-accent-cyan/40 hover:shadow-glow-card transition-all relative overflow-hidden">
+            <Tilt3D maxTilt={6} scale={1.03} className="h-full">
+              <div className="card-surface group h-full p-8 flex flex-col justify-between border border-white/10 hover:border-cyan-500/40 hover:shadow-[0_15px_40px_rgba(0,0,0,0.7),0_0_30px_rgba(6,182,212,0.18)] transition-all duration-300 relative overflow-hidden">
                 {/* Background Quote Icon */}
-                <Quote className="absolute right-6 top-6 h-16 w-16 text-white/[0.03] pointer-events-none" />
+                <Quote className="absolute right-6 top-6 h-16 w-16 text-white/[0.03] group-hover:text-cyan-500/10 transition-colors pointer-events-none" />
 
                 <div>
                   {/* Rating Stars */}
@@ -37,7 +37,7 @@ export default function Testimonials() {
                     {[...Array(item.rating)].map((_, s) => (
                       <Star
                         key={s}
-                        className="h-4 w-4 fill-amber-400 text-amber-400"
+                        className="h-4 w-4 fill-amber-400 text-amber-400 group-hover:scale-110 transition-transform"
                       />
                     ))}
                     <span className="text-xs font-mono text-slate-400 ml-2">
@@ -46,8 +46,8 @@ export default function Testimonials() {
                   </div>
 
                   {/* Project Tag */}
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-accent-indigo/20 border border-accent-indigo/30 text-[11px] font-mono text-accent-cyan mb-4">
-                    <CheckCircle2 className="h-3 w-3" />
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-indigo-500/15 border border-indigo-500/30 text-[11px] font-mono text-cyan-300 mb-4">
+                    <CheckCircle2 className="h-3 w-3 text-emerald-400" />
                     <span>{item.project}</span>
                   </div>
 
@@ -60,12 +60,12 @@ export default function Testimonials() {
                 {/* Author Info */}
                 <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-4">
                   <div
-                    className={`h-12 w-12 rounded-full bg-gradient-to-br ${item.avatarBg} flex items-center justify-center font-display font-bold text-white shadow-md text-base shrink-0`}
+                    className={`h-12 w-12 rounded-full bg-gradient-to-br ${item.avatarBg} flex items-center justify-center font-display font-bold text-white shadow-md text-base shrink-0 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(99,102,241,0.5)] transition-all duration-300`}
                   >
                     {item.initials}
                   </div>
                   <div>
-                    <h4 className="font-display font-bold text-white text-sm sm:text-base">
+                    <h4 className="font-display font-bold text-white text-sm sm:text-base group-hover:text-cyan-300 transition-colors">
                       {item.author}
                     </h4>
                     <p className="text-xs text-slate-400">

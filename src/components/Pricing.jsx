@@ -38,23 +38,23 @@ export default function Pricing() {
           return (
             <motion.div
               key={plan.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              initial={{ opacity: 0, y: 25, scale: 0.98 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: false, amount: 0.15 }}
+              transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
               className={`h-full ${plan.highlight ? "lg:-mt-4 lg:mb-4" : ""}`}
             >
-              <Tilt3D maxTilt={7} scale={plan.highlight ? 1.02 : 1.01} className="h-full">
+              <Tilt3D maxTilt={6} scale={plan.highlight ? 1.035 : 1.02} className="h-full">
                 <div
                   className={`relative flex h-full flex-col justify-between rounded-3xl p-8 sm:p-9 border transition-all duration-300 ${
                     plan.highlight
-                      ? "border-accent-cyan/80 bg-gradient-to-b from-accent-indigo/20 via-bg-850 to-bg-900 shadow-glow-indigo"
-                      : "border-white/10 bg-gradient-to-b from-bg-850/80 to-bg-900/80 hover:border-white/20"
+                      ? "border-cyan-500/80 bg-gradient-to-b from-indigo-950/50 via-slate-900/95 to-[#06030F] shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_40px_rgba(6,182,212,0.25)]"
+                      : "border-white/10 bg-gradient-to-b from-slate-900/80 to-[#06030F]/90 hover:border-cyan-500/30 hover:shadow-[0_15px_35px_rgba(0,0,0,0.6)]"
                   }`}
                 >
                   {/* Highlight Ribbon */}
                   {plan.highlight && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-accent-indigo via-accent-blue to-accent-cyan px-4 py-1.5 text-xs font-bold text-white shadow-lg tracking-wide uppercase">
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-indigo-500 via-purple-600 to-cyan-400 px-4 py-1.5 text-xs font-bold text-white shadow-[0_0_20px_rgba(6,182,212,0.5)] tracking-wide uppercase">
                       <Sparkles className="h-3.5 w-3.5" />
                       Pilihan Paling Populer
                     </div>
@@ -63,8 +63,8 @@ export default function Pricing() {
                   <div>
                     {/* Header */}
                     <div className="flex items-center justify-between gap-2">
-                      <span className="eyebrow text-accent-cyan">{plan.name}</span>
-                      <span className="text-[11px] font-mono text-slate-400 bg-white/[0.04] px-2.5 py-1 rounded-md border border-white/5">
+                      <span className="eyebrow text-cyan-400">{plan.name}</span>
+                      <span className="text-[11px] font-mono text-slate-300 bg-white/[0.05] px-2.5 py-1 rounded-md border border-white/10">
                         {plan.badge}
                       </span>
                     </div>
@@ -78,7 +78,7 @@ export default function Pricing() {
                       <span className="text-xs font-mono text-slate-400 uppercase tracking-wider block">
                         {plan.period}
                       </span>
-                      <p className="mt-1 text-3xl sm:text-4xl font-display font-extrabold text-white">
+                      <p className="mt-1 text-3xl sm:text-4xl font-display font-extrabold text-white bg-gradient-to-r from-white via-slate-100 to-cyan-300 bg-clip-text text-transparent">
                         {plan.price}
                       </p>
                     </div>
@@ -90,8 +90,8 @@ export default function Pricing() {
                           key={f}
                           className="flex items-start gap-3 text-xs sm:text-sm text-slate-300"
                         >
-                          <div className="h-5 w-5 rounded-full bg-accent-cyan/10 border border-accent-cyan/30 flex items-center justify-center shrink-0 mt-0.5">
-                            <Check className="h-3.5 w-3.5 text-accent-cyan" />
+                          <div className="h-5 w-5 rounded-full bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center shrink-0 mt-0.5">
+                            <Check className="h-3.5 w-3.5 text-cyan-400" />
                           </div>
                           <span>{f}</span>
                         </li>
@@ -105,11 +105,11 @@ export default function Pricing() {
                       href={planWa}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`w-full text-center text-sm sm:text-base py-4 font-semibold ${
+                      className={`w-full text-center text-sm sm:text-base py-4 font-semibold hover:scale-105 active:scale-95 transition-all duration-300 ${
                         plan.highlight ? "btn-primary" : "btn-secondary"
                       }`}
                     >
-                      {plan.cta}
+                      <span>{plan.cta}</span>
                       <ArrowRight className="h-4 w-4" />
                     </a>
                   </div>
@@ -120,12 +120,12 @@ export default function Pricing() {
         })}
       </div>
 
-      {/* Trust Badges */}
+      {/* Trust Badges with Hover Zoom */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.2 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
         className="mt-16 flex flex-wrap items-center justify-center gap-4"
       >
         {TRUST_BADGES.map((badge) => {
@@ -133,9 +133,9 @@ export default function Pricing() {
           return (
             <div
               key={badge.label}
-              className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 text-xs sm:text-sm font-medium text-slate-300 backdrop-blur-md shadow-sm hover:border-accent-cyan/40 transition-colors"
+              className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 text-xs sm:text-sm font-medium text-slate-300 backdrop-blur-md shadow-sm hover:border-cyan-500/50 hover:bg-white/[0.06] hover:scale-105 transition-all duration-300 cursor-default"
             >
-              <Icon className="h-4 w-4 text-accent-cyan" />
+              <Icon className="h-4 w-4 text-cyan-400" />
               <span>{badge.label}</span>
             </div>
           );
