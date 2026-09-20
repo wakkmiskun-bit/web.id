@@ -376,11 +376,11 @@ export default function SystemStation() {
   const [activeTab, setActiveTab] = useState("code"); // "code" | "arch" | "metrics"
   const [activeFileKey, setActiveFileKey] = useState("Core.php");
 
-  // Typewriter state
-  const [charCount, setCharCount] = useState(0);
+  // Typewriter state (default to instant complete for zero CPU overhead on initial page load)
+  const [charCount, setCharCount] = useState(99999);
   const [isPaused, setIsPaused] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(1); // 1 = 1x (~26ms), 2 = 2x (~12ms), 0 = Instant
-  const [isComplete, setIsComplete] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(1); // 1 = 1x, 2 = 2x, 0 = Instant
+  const [isComplete, setIsComplete] = useState(true);
   const [copied, setCopied] = useState(false);
 
   // Terminal console state
@@ -429,10 +429,10 @@ export default function SystemStation() {
     }, 0);
   }, [activeFile]);
 
-  // Restart typing on file switch
+  // Instantly show complete file on file switch
   useEffect(() => {
-    setCharCount(0);
-    setIsComplete(false);
+    setCharCount(99999);
+    setIsComplete(true);
     setIsPaused(false);
     setConsoleLogs([]);
     setConsoleOpen(false);
@@ -463,9 +463,9 @@ export default function SystemStation() {
     return () => clearTimeout(timer);
   }, [charCount, totalCharacters, isPaused, typingSpeed, activeTab, isInView]);
 
-  // Telemetry fluctuation effect (viewport-aware)
+  // Telemetry fluctuation effect (only runs when Live Metrics tab is active)
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView || activeTab !== "metrics") return;
     const timer = setInterval(() => {
       setLiveMetrics((prev) => {
         if (stressActive) {
@@ -488,7 +488,7 @@ export default function SystemStation() {
     }, 2500);
 
     return () => clearInterval(timer);
-  }, [stressActive, isInView]);
+  }, [stressActive, isInView, activeTab]);
 
   // Handle Copy Raw Code
   const handleCopy = () => {

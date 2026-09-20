@@ -54,20 +54,19 @@ export default function FloatingWhatsApp() {
         )}
       </AnimatePresence>
 
-      {/* Floating Action Button with 3D ping and hover zoom */}
+      {/* Floating Action Button with hover zoom */}
       <motion.a
         href={WHATSAPP_LINK}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Hubungi kami via WhatsApp"
-        initial={{ opacity: 0, scale: 0.5, y: 20 }}
+        initial={{ opacity: 0, scale: 0.8, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 1.0, type: "spring" }}
-        whileHover={{ scale: 1.12 }}
-        whileTap={{ scale: 0.92 }}
-        className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-400 shadow-[0_10px_35px_rgba(16,185,129,0.55)] border border-emerald-300/30 cursor-pointer"
+        transition={{ duration: 0.4, delay: 0.8 }}
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.94 }}
+        className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-400 shadow-[0_8px_30px_rgba(16,185,129,0.45)] border border-emerald-300/30 cursor-pointer transition-shadow hover:shadow-[0_10px_35px_rgba(16,185,129,0.6)]"
       >
-        <span className="absolute inset-0 rounded-2xl bg-emerald-500 animate-ping-soft" />
         <MessageCircle className="relative h-7 w-7 text-white" fill="currentColor" />
       </motion.a>
     </div>

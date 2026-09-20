@@ -66,28 +66,23 @@ export default function Hero() {
             variants={fadeUp}
             className="text-4xl sm:text-5xl lg:text-[3.35rem] font-bold leading-[1.12] tracking-tight text-white"
           >
-            <WordWriter text="Arsitektur Website &" as="span" stagger={0.04} />{" "}
+            Arsitektur Website &{" "}
             <span
               className="bg-clip-text text-transparent text-glow inline-block"
               style={{backgroundImage: "linear-gradient(135deg, #A78BFA 0%, #34D399 60%, #FCD34D 100%)"}}
             >
-              <WordWriter text="Sistem Skala Enterprise" as="span" delay={0.15} stagger={0.04} />
+              Sistem Skala Enterprise
             </span>{" "}
-            <WordWriter text="untuk Percepatan Bisnis Anda" as="span" delay={0.3} stagger={0.04} />
+            untuk Percepatan Bisnis Anda
           </motion.h1>
 
           {/* Subtitle */}
-          <motion.div
+          <motion.p
             variants={fadeUp}
             className="mt-6 text-base sm:text-lg text-slate-300/90 max-w-2xl leading-relaxed font-normal"
           >
-            <WordWriter
-              text="NexaCode Studio merancang, membangun, dan merilis ekosistem digital berbasis Laravel & React. Bukan sekadar desain di atas template, kami memastikan keandalan database, kecepatan loading sub-detik, keamanan berstandar industri, dan konversi penjualan yang terukur nyata."
-              as="p"
-              delay={0.35}
-              stagger={0.02}
-            />
-          </motion.div>
+            NexaCode Studio merancang, membangun, dan merilis ekosistem digital berbasis Laravel & React. Bukan sekadar desain di atas template, kami memastikan keandalan database, kecepatan loading sub-detik, keamanan berstandar industri, dan konversi penjualan yang terukur nyata.
+          </motion.p>
 
           {/* Action CTAs with Hover Zoom & Glow */}
           <motion.div variants={fadeUp} className="mt-8 flex flex-wrap items-center gap-4">
@@ -139,25 +134,25 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Right: 3D Code Station (5 cols) */}
+        {/* Right: Code Station (5 cols) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.96, y: 20 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 relative perspective-1500"
+          className="lg:col-span-5 relative"
         >
-          <Tilt3D maxTilt={5} scale={1.02} glare={false} className="w-full">
+          <div className="w-full">
             <SystemStation />
-          </Tilt3D>
+          </div>
 
           {/* Floating Badge: Ultra-Fast Loading */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="absolute -bottom-5 -left-3 sm:-left-5 backdrop-blur-xl rounded-xl px-3.5 py-2.5 flex items-center gap-3 z-20 animate-float hover:scale-105 transition-transform duration-300"
+            transition={{ delay: 0.3, duration: 0.4 }}
+            className="absolute -bottom-5 -left-3 sm:-left-5 backdrop-blur-xl rounded-xl px-3.5 py-2.5 flex items-center gap-3 z-20 hover:scale-105 transition-transform duration-300"
             style={{
               background: "rgba(6,11,24,0.92)",
               border: "1px solid rgba(6,182,212,0.35)",
@@ -175,7 +170,7 @@ export default function Hero() {
                 Ultra-Fast Loading
               </p>
               <p className="text-[10px] font-mono flex items-center gap-1 text-cyan-400">
-                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
                 Core Web Vitals &gt; 98
               </p>
             </div>
@@ -186,8 +181,8 @@ export default function Hero() {
             initial={{ opacity: 0, y: -15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.6, duration: 0.5 }}
-            className="absolute -top-4 -right-3 sm:-right-4 backdrop-blur-xl rounded-xl px-3.5 py-2.5 flex items-center gap-3 z-20 animate-float-slow hover:scale-105 transition-transform duration-300"
+            transition={{ delay: 0.4, duration: 0.4 }}
+            className="absolute -top-4 -right-3 sm:-right-4 backdrop-blur-xl rounded-xl px-3.5 py-2.5 flex items-center gap-3 z-20 hover:scale-105 transition-transform duration-300"
             style={{
               background: "rgba(6,11,24,0.92)",
               border: "1px solid rgba(99,102,241,0.35)",
