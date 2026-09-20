@@ -33,7 +33,7 @@ export default function FaqSection() {
       <div className="absolute top-1/3 right-10 h-96 w-96 rounded-full bg-accent-cyan/10 blur-[150px] pointer-events-none" />
 
       <SectionHeading
-        eyebrow="// 09_tanya_jawab"
+        eyebrow="// 08_tanya_jawab"
         title="Pertanyaan yang Sering Diajukan"
         desc="Transparansi total mengenai proses, garansi, kepemilikan source code, dan skema pengerjaan proyek di NexaCode Studio."
       />
@@ -41,7 +41,7 @@ export default function FaqSection() {
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.15 }}
+        viewport={{ once: true, amount: 0.12 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className="mt-12 max-w-4xl"
       >

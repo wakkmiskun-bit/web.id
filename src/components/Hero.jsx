@@ -23,12 +23,11 @@ const container = {
 };
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+  hidden: { opacity: 0, y: 16 },
   show: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -62,29 +61,6 @@ export default function Hero() {
           viewport={{ once: true, amount: 0.1 }}
           className="lg:col-span-7 z-10"
         >
-          {/* Availability pill badge */}
-          <motion.div
-            variants={fadeUp}
-            className="inline-flex items-center gap-2.5 rounded-full px-4 py-1.5 mb-6 backdrop-blur-md"
-            style={{
-              border: "1px solid rgba(16,185,129,0.3)",
-              background: "rgba(16,185,129,0.06)",
-              boxShadow: "0 0 16px rgba(16,185,129,0.08)"
-            }}
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-            </span>
-            <span className="eyebrow text-slate-200">
-              Enterprise Software & Web Studio
-            </span>
-            <span className="hidden sm:inline-block text-xs font-mono font-medium border-l border-white/15 pl-2"
-              style={{color: "#10B981"}}>
-              Slot Proyek Aktif
-            </span>
-          </motion.div>
-
           {/* Main Title */}
           <motion.h1
             variants={fadeUp}
@@ -238,10 +214,6 @@ export default function Hero() {
 
       {/* Infinite Tech Marquee Bar */}
       <div className="relative mx-auto max-w-7xl w-full mt-20 pt-8 border-t border-white/[0.06]">
-        <p className="text-center text-xs font-mono tracking-widest text-slate-500 uppercase mb-6 flex items-center justify-center gap-2">
-          <Sparkles className="h-3.5 w-3.5 text-amber-400" />
-          Ekosistem Teknologi Standar Industri Skala Global
-        </p>
         <div className="relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_15%,black_85%,transparent)]">
           <div className="flex w-max gap-4 animate-marquee py-2 hover:[animation-play-state:paused]">
             {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (

@@ -18,7 +18,7 @@ export default function Background3D() {
     let height = (canvas.height = window.innerHeight);
 
     // Particle pool with 3D coordinates (x, y, z)
-    const particleCount = Math.min(Math.floor((width * height) / 16000), 85);
+    const particleCount = Math.min(Math.floor((width * height) / 22000), 55);
     const particles = [];
 
     const mouse = {
@@ -140,53 +140,69 @@ export default function Background3D() {
             size: Math.max(0.6, p.size * scale * 1.9),
           });
 
+          // Soft neon halo for front particles (fast arc instead of heavy shadowBlur)
+          if (scale > 0.55) {
+            ctx.beginPath();
+            ctx.arc(projX, projY, Math.max(1.2, p.size * scale * 3), 0, Math.PI * 2);
+            ctx.fillStyle = `${p.color}${alpha * 0.2})`;
+            ctx.fill();
+          }
+
           // Draw particle node
           ctx.beginPath();
           ctx.arc(projX, projY, Math.max(0.6, p.size * scale * 1.8), 0, Math.PI * 2);
           ctx.fillStyle = `${p.color}${alpha})`;
           ctx.fill();
-
-          // Soft neon glow for front particles
-          if (scale > 0.55) {
-            ctx.shadowBlur = 12;
-            ctx.shadowColor = `${p.color}0.7)`;
-          } else {
-            ctx.shadowBlur = 0;
-          }
         }
       }
 
-      // Draw dynamic constellation connection lines in 3D space
+      // Draw dynamic constellation connection lines in 3D space (batched into single path)
+      const maxDist = 115;
+      const maxDistSq = maxDist * maxDist;
       ctx.lineWidth = 0.55;
-      for (let i = 0; i < projected.length; i++) {
-        for (let j = i + 1; j < projected.length; j++) {
-          const p1 = projected[i];
-          const p2 = projected[j];
+      ctx.strokeStyle = "rgba(99, 102, 241, 0.16)";
+      ctx.beginPath();
+      let hasLines = false;
 
+      for (let i = 0; i < projected.length; i++) {
+        const p1 = projected[i];
+        for (let j = i + 1; j < projected.length; j++) {
+          const p2 = projected[j];
           const dx = p1.x - p2.x;
           const dy = p1.y - p2.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
 
-          if (dist < 115) {
-            const lineAlpha = (1 - dist / 115) * Math.min(p1.alpha, p2.alpha) * 0.32;
-            ctx.strokeStyle = `rgba(99, 102, 241, ${lineAlpha})`;
-            ctx.beginPath();
+          if (distSq < maxDistSq) {
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.stroke();
+            hasLines = true;
           }
         }
       }
+      if (hasLines) {
+        ctx.stroke();
+      }
 
-      animationFrameId = requestAnimationFrame(render);
+      if (!document.hidden) {
+        animationFrameId = requestAnimationFrame(render);
+      }
     };
 
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = requestAnimationFrame(render);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
     render();
 
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

@@ -26,21 +26,31 @@ export default function Tilt3D({
   const glareX = useTransform(x, [-0.5, 0.5], ["10%", "90%"]);
   const glareY = useTransform(y, [-0.5, 0.5], ["10%", "90%"]);
 
+  const rectRef = useRef(null);
+
+  function handleMouseEnter() {
+    if (typeof window !== "undefined" && window.matchMedia && !window.matchMedia("(hover: hover)").matches) {
+      return;
+    }
+    if (ref.current) {
+      rectRef.current = ref.current.getBoundingClientRect();
+    }
+    setHovered(true);
+  }
+
   function handleMouseMove(e) {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
+    if (!hovered) return;
+    const rect = rectRef.current || (ref.current && ref.current.getBoundingClientRect());
+    if (!rect || rect.width === 0 || rect.height === 0) return;
     const px = (e.clientX - rect.left) / rect.width - 0.5;
     const py = (e.clientY - rect.top) / rect.height - 0.5;
     x.set(px);
     y.set(py);
   }
 
-  function handleMouseEnter() {
-    setHovered(true);
-  }
-
   function handleMouseLeave() {
     setHovered(false);
+    rectRef.current = null;
     x.set(0);
     y.set(0);
   }

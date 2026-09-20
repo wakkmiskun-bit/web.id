@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Terminal,
@@ -404,6 +404,21 @@ export default function SystemStation() {
     ram: 1.4,
   });
 
+  const containerRef = useRef(null);
+  const [isInView, setIsInView] = useState(true);
+
+  useEffect(() => {
+    if (!containerRef.current || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { rootMargin: "100px" }
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   const activeFile = CODE_FILES[activeFileKey] || CODE_FILES["Core.php"];
 
   // Calculate total characters in active file
@@ -423,10 +438,9 @@ export default function SystemStation() {
     setConsoleOpen(false);
   }, [activeFileKey]);
 
-  // Typewriter Engine
+  // Typewriter Engine (Optimized batching & viewport-aware)
   useEffect(() => {
-    if (activeTab !== "code") return;
-    if (isPaused) return;
+    if (activeTab !== "code" || isPaused || !isInView) return;
 
     if (typingSpeed === 0) {
       // Instant display
@@ -440,16 +454,18 @@ export default function SystemStation() {
       return;
     }
 
-    const delay = typingSpeed === 2 ? 14 : 28;
+    const stepChars = typingSpeed === 2 ? 3 : 2;
+    const delay = typingSpeed === 2 ? 26 : 38;
     const timer = setTimeout(() => {
-      setCharCount((prev) => Math.min(prev + (typingSpeed === 2 ? 2 : 1), totalCharacters));
+      setCharCount((prev) => Math.min(prev + stepChars, totalCharacters));
     }, delay);
 
     return () => clearTimeout(timer);
-  }, [charCount, totalCharacters, isPaused, typingSpeed, activeTab]);
+  }, [charCount, totalCharacters, isPaused, typingSpeed, activeTab, isInView]);
 
-  // Telemetry fluctuation effect
+  // Telemetry fluctuation effect (viewport-aware)
   useEffect(() => {
+    if (!isInView) return;
     const timer = setInterval(() => {
       setLiveMetrics((prev) => {
         if (stressActive) {
@@ -469,10 +485,10 @@ export default function SystemStation() {
           ram: +(1.4 + Math.random() * 0.1).toFixed(1),
         };
       });
-    }, 2200);
+    }, 2500);
 
     return () => clearInterval(timer);
-  }, [stressActive]);
+  }, [stressActive, isInView]);
 
   // Handle Copy Raw Code
   const handleCopy = () => {
@@ -601,7 +617,10 @@ export default function SystemStation() {
   }, [charCount, activeFile]);
 
   return (
-    <div className="relative rounded-2xl border border-slate-700/50 bg-[#0B1120]/95 shadow-[0_20px_50px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-2xl overflow-hidden transition-all duration-300">
+    <div
+      ref={containerRef}
+      className="relative rounded-2xl border border-slate-700/50 bg-[#0B1120]/95 shadow-[0_20px_50px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-2xl overflow-hidden transition-all duration-300"
+    >
       {/* ========================================================== */}
       {/* 1. TOP WINDOW BAR (macOS Chrome + Mode Switcher) */}
       {/* ========================================================== */}

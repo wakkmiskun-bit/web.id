@@ -32,12 +32,7 @@ export function SectionHeading({ eyebrow, title, desc, align = "left", once = tr
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className={`max-w-3xl ${align === "center" ? "mx-auto text-center" : ""}`}
     >
-      <div className={`flex items-center gap-2 mb-2 ${align === "center" ? "justify-center" : ""}`}>
-        <Sparkles className="h-4 w-4" style={{color: "#10B981"}} />
-        <span className="eyebrow">{eyebrow}</span>
-      </div>
-
-      <h2 className="mt-2 text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white tracking-tight leading-tight">
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white tracking-tight leading-tight">
         <WordWriter text={title} as="span" once={once} stagger={0.035} />
       </h2>
 

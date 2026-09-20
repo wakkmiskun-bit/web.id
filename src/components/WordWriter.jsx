@@ -33,15 +33,13 @@ export default function WordWriter({
   const wordVariants = {
     hidden: {
       opacity: 0,
-      y: 10,
-      filter: "blur(4px)",
+      y: 8,
     },
     visible: {
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
       transition: {
-        duration: 0.4,
+        duration: 0.35,
         ease: [0.16, 1, 0.3, 1], // Smooth organic deceleration curve
       },
     },

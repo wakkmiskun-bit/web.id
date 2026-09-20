@@ -23,7 +23,7 @@ export default function Pricing() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[32rem] w-[32rem] rounded-full bg-accent-indigo/10 blur-[150px] pointer-events-none" />
 
       <SectionHeading
-        eyebrow="// 06_investasi_transparan"
+        eyebrow="// 05_investasi_transparan"
         title="Paket Investasi Transparan, Tanpa Biaya Tersembunyi"
         desc="Seluruh paket mencakup hak milik penuh atas kode sumber, domain & hosting, serta garansi bug resmi pasca-peluncuran."
       />
@@ -40,7 +40,7 @@ export default function Pricing() {
               key={plan.name}
               initial={{ opacity: 0, y: 25, scale: 0.98 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: false, amount: 0.15 }}
+              viewport={{ once: true, amount: 0.12 }}
               transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
               className={`h-full ${plan.highlight ? "lg:-mt-4 lg:mb-4" : ""}`}
             >
@@ -124,7 +124,7 @@ export default function Pricing() {
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
         className="mt-16 flex flex-wrap items-center justify-center gap-4"
       >

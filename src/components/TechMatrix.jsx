@@ -30,7 +30,7 @@ export default function TechMatrix() {
       <div className="absolute top-1/2 right-1/4 h-80 w-80 rounded-full bg-accent-indigo/10 blur-[130px] pointer-events-none" />
 
       <SectionHeading
-        eyebrow="// 05_arsitektur_teknologi"
+        eyebrow="// 04_arsitektur_teknologi"
         title="Dibangun dengan Standar Rekayasa Modern"
         desc="Kami hanya mengadopsi stack teknologi yang telah teruji stabilitasnya di skala enterprise untuk menjamin kecepatan, skalabilitas, dan proteksi jangka panjang."
       />
@@ -38,7 +38,7 @@ export default function TechMatrix() {
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.15 }}
+        viewport={{ once: true, amount: 0.12 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className="mt-12 grid lg:grid-cols-12 gap-8 items-start perspective-1500"
       >

@@ -68,7 +68,7 @@ Bisa dijadwalkan sesi konsultasi untuk detailnya? Terima kasih!`;
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 h-96 w-[36rem] rounded-full bg-accent-indigo/20 blur-[140px] animate-pulse-glow pointer-events-none" />
 
       <SectionHeading
-        eyebrow="// 03_kalkulator_interaktif"
+        eyebrow="// 02_kalkulator_interaktif"
         title="Simulasikan Kebutuhan &amp; Estimasi Investasi Proyek"
         desc="Gunakan kalkulator interaktif ini untuk merancang spesifikasi fitur yang Anda butuhkan dan dapatkan perkiraan biaya serta durasi pengerjaan secara transparan."
       />

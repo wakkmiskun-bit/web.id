@@ -46,12 +46,13 @@ export default function CursorGlow() {
         translateX: "-50%",
         translateY: "-50%",
       }}
-      className="fixed top-0 left-0 pointer-events-none z-20 w-[420px] h-[420px] rounded-full opacity-35 blur-[80px]"
+      className="fixed top-0 left-0 pointer-events-none z-20 w-[450px] h-[450px] rounded-full will-change-transform"
     >
       <div
         className="w-full h-full rounded-full"
         style={{
-          background: "radial-gradient(circle, rgba(6,182,212,0.22) 0%, rgba(99,102,241,0.14) 40%, transparent 70%)",
+          background:
+            "radial-gradient(circle, rgba(6,182,212,0.14) 0%, rgba(99,102,241,0.08) 32%, rgba(124,58,237,0.03) 55%, transparent 70%)",
         }}
       />
     </motion.div>

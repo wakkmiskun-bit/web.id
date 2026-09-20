@@ -11,7 +11,7 @@ export default function Team() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[30rem] w-[45rem] rounded-full bg-accent-indigo/10 blur-[140px] pointer-events-none" />
 
       <SectionHeading
-        eyebrow="// 08_insinyur_kami"
+        eyebrow="// 07_insinyur_kami"
         title="Dua Spesialis di Balik Setiap Sistem yang Kami Bangun"
         desc="Kombinasi solid antara arsitektur backend berstandar enterprise dan rekayasa antarmuka pengguna modern berkecepatan tinggi."
       />
@@ -22,7 +22,7 @@ export default function Team() {
             key={member.name}
             initial={{ opacity: 0, y: 25, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: false, amount: 0.15 }}
+            viewport={{ once: true, amount: 0.12 }}
             transition={{ duration: 0.5, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
             className="h-full"
           >

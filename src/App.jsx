@@ -36,7 +36,6 @@ export default function App() {
         <Hero />
         <Services />
         <Portfolio />
-        <ProjectEstimator />
         <Workflow />
         <TechMatrix />
         <Pricing />

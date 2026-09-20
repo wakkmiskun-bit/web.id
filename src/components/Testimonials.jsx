@@ -11,7 +11,7 @@ export default function Testimonials() {
       <div className="absolute -top-10 right-10 h-80 w-80 rounded-full bg-accent-cyan/10 blur-[130px] pointer-events-none" />
 
       <SectionHeading
-        eyebrow="// 07_testimoni_klien"
+        eyebrow="// 06_testimoni_klien"
         title="Apa Kata Mereka yang Telah Bermitra dengan Kami"
         desc="Kepercayaan klien adalah aset terbesar kami. Berikut pengalaman nyata mereka dalam mengembangkan solusi digital bersama NexaCode Studio."
       />
@@ -22,7 +22,7 @@ export default function Testimonials() {
             key={item.author}
             initial={{ opacity: 0, y: 25, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: false, amount: 0.15 }}
+            viewport={{ once: true, amount: 0.12 }}
             transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="h-full"
           >

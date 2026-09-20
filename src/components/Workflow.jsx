@@ -24,7 +24,7 @@ export default function Workflow() {
       <div className="absolute top-1/2 -left-20 h-96 w-96 rounded-full bg-accent-violet/15 blur-[140px] animate-pulse-glow pointer-events-none" />
 
       <SectionHeading
-        eyebrow="// 04_alur_rekayasa"
+        eyebrow="// 03_alur_rekayasa"
         title="Alur Kerja Terstruktur, Transparan &amp; Tepat Waktu"
         desc="Metodologi Agile teruji yang memastikan setiap baris kode, arsitektur database, dan antarmuka dirilis tanpa friksi."
       />

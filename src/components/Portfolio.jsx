@@ -78,7 +78,7 @@ export default function Portfolio() {
       </div>
 
       <SectionHeading
-        eyebrow="// 02_portofolio_nyata"
+        eyebrow="// 01_portofolio_nyata"
         title="Karya Produksi Nyata & Berdampak Terukur"
         desc="Seluruh proyek di bawah ini telah dirilis dan berjalan aktif di server produksi klien — bukan sekadar mockup Figma statis."
       />
