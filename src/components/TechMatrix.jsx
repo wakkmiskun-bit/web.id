@@ -25,7 +25,7 @@ export default function TechMatrix() {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
 
   return (
-    <section className="section-pad relative bg-bg-900/30 overflow-hidden">
+    <section id="teknologi" className="section-pad relative bg-bg-900/30 overflow-hidden">
       {/* Glow orb */}
       <div className="absolute top-1/2 right-1/4 h-80 w-80 rounded-full bg-accent-indigo/10 blur-[130px] pointer-events-none" />
 

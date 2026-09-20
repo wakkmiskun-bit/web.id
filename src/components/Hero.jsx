@@ -103,11 +103,11 @@ export default function Hero() {
             </a>
 
             <a
-              href="#kalkulator"
+              href="#harga"
               className="btn-secondary text-sm sm:text-base px-6 py-4 hover:scale-105 active:scale-95 transition-all duration-300"
             >
-              <Calculator className="h-4 w-4 text-cyan-400" />
-              <span>Hitung Estimasi Biaya</span>
+              <Sparkles className="h-4 w-4 text-cyan-400" />
+              <span>Lihat Paket Harga</span>
             </a>
 
             <a

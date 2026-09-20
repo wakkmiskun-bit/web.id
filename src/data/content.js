@@ -12,9 +12,9 @@ export const WHATSAPP_LINK = waLink(
 export const NAV_LINKS = [
   { label: "Layanan", href: "#layanan" },
   { label: "Portofolio", href: "#portofolio" },
-  { label: "Estimasi Biaya", href: "#kalkulator" },
   { label: "Alur Kerja", href: "#alur-kerja" },
-  { label: "Paket Harga", href: "#harga" },
+  { label: "Teknologi", href: "#teknologi" },
+  { label: "Harga", href: "#harga" },
   { label: "Testimoni", href: "#testimoni" },
   { label: "Tim", href: "#tim" },
   { label: "FAQ", href: "#faq" },
