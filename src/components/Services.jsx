@@ -37,7 +37,7 @@ export function SectionHeading({ eyebrow, title, desc, align = "left", once = tr
       </h2>
 
       {desc && (
-        <p className="mt-4 text-base sm:text-lg text-slate-400 leading-relaxed max-w-2xl">
+        <p className={`mt-4 text-base sm:text-lg text-slate-400 leading-relaxed max-w-2xl ${align === "center" ? "mx-auto" : ""}`}>
           <WordWriter text={desc} as="span" once={once} delay={0.12} stagger={0.02} />
         </p>
       )}

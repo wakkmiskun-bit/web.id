@@ -32,8 +32,8 @@ export default function FaqSection() {
       {/* Background glow orb */}
       <div className="absolute top-1/3 right-10 h-96 w-96 rounded-full bg-accent-cyan/10 blur-[150px] pointer-events-none" />
 
+    <div className="max-w-4xl mx-auto">
       <SectionHeading
-        eyebrow="// 08_tanya_jawab"
         title="Pertanyaan yang Sering Diajukan"
         desc="Transparansi total mengenai proses, garansi, kepemilikan source code, dan skema pengerjaan proyek di NexaCode Studio."
       />
@@ -43,7 +43,7 @@ export default function FaqSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.12 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-12 max-w-4xl"
+        className="mt-12"
       >
         {/* Search Bar & Category Filter */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8">
@@ -189,6 +189,7 @@ export default function FaqSection() {
           </a>
         </div>
       </motion.div>
-    </section>
+    </div>
+  </section>
   );
 }
